@@ -17,3 +17,5 @@ const startServer = async () => {
     process.exit(1);
   }
 };
+
+startServer();
