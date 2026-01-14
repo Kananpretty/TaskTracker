@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="w-full min-h-screen bg-gray-100">
       <Navbar />
-      <div className="max-w-3xl mx-auto mt-8 px-4">
+      <div className="max-w-xl mx-auto mt-8 px-4">
         <TaskPage />
       </div>
     </div>

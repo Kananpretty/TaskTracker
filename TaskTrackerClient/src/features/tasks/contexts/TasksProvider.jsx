@@ -3,8 +3,9 @@ import { useState, useEffect, useCallback } from "react";
 import {
   getTasks,
   createTask,
-  updateTask,
   deleteTask,
+  updateTaskStatus,
+  updateTaskDetails,
 } from "../services/taskService";
 
 import { TasksContext } from "./TasksContext";
@@ -31,7 +32,6 @@ export const TasksProvider = ({ children }) => {
   // Add a new task
   const addTask = async ({ title, description }) => {
     if (!title.trim()) return;
-    console.log(title, description);
     try {
       const newTask = await createTask(title, description);
       setTasks((prev) => [newTask, ...prev]);
@@ -41,9 +41,18 @@ export const TasksProvider = ({ children }) => {
   };
 
   // Update task status
-  const updateTaskById = async ({ id, status }) => {
+  const updateTaskByStatus = async (id) => {
     try {
-      const updated = await updateTask(id, { status });
+      const updated = await updateTaskStatus(id);
+      setTasks((prev) => prev.map((t) => (t._id === id ? updated : t)));
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const updateTaskByDetails = async (id, title, description) => {
+    try {
+      const updated = await updateTaskDetails(id, title, description);
       setTasks((prev) => prev.map((t) => (t._id === id ? updated : t)));
     } catch (err) {
       setError(err.message);
@@ -52,9 +61,18 @@ export const TasksProvider = ({ children }) => {
 
   // Delete a task
   const deleteTaskById = async (id) => {
+    console.log("Attempting to delete ID:", id);
+    console.log(
+      "Sample Task from state:",
+      tasks.find((t) => t._id === id)
+    );
     try {
-      await deleteTask(id);
-      setTasks((prev) => prev.filter((t) => t._id !== id));
+      const deletedTask = await deleteTask(id);
+      setTasks((prev) => {
+        const updated = prev.filter((t) => t._id !== deletedTask._id);
+        console.log("Tasks after filter:", updated.length);
+        return updated;
+      });
     } catch (err) {
       setError(err.message);
     }
@@ -73,7 +91,8 @@ export const TasksProvider = ({ children }) => {
         error,
         fetchTasks,
         addTask,
-        updateTaskById,
+        updateTaskByStatus,
+        updateTaskByDetails,
         deleteTaskById,
       }}
     >

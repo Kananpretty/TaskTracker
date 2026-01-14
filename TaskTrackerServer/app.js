@@ -4,11 +4,10 @@ import taskRoutes from "./routes/tasks.route.js";
 const app = express();
 
 /* middleware */
-app.use(express.json());
+app.use(express.json()); // Parses JSON in request body
+app.use(express.urlencoded({ extended: true })); // Optional: parses form data
 
 /* routes */
-
-// Routes
 app.use("/api/tasks", taskRoutes);
 
 app.get("/health", (req, res) => {

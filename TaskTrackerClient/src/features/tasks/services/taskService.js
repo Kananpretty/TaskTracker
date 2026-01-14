@@ -19,11 +19,20 @@ export const createTask = async (title, description) => {
   return data;
 };
 
-export const updateTask = async (id, status) => {
+export const updateTaskStatus = async (id) => {
+  const res = await fetch(`${API_URL}/tasks/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+  });
+  if (!res.ok) throw new Error("Failed to update task");
+  return res.json();
+};
+
+export const updateTaskDetails = async (id, title, description) => {
   const res = await fetch(`${API_URL}/tasks/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ status }),
+    body: JSON.stringify({ title, description }),
   });
   if (!res.ok) throw new Error("Failed to update task");
   return res.json();

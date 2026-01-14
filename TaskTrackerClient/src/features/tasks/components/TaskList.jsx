@@ -8,7 +8,7 @@ const TaskList = () => {
   if (isLoading) return <p>Loading tasks...</p>;
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200">
+    <div className="bg-white flex flex-col gap-2 border-2 border-gray-200 rounded-lg border-t-0 rounded-t-none p-2">
       {tasks.map((task) => (
         <TaskItem key={task._id} task={task} />
       ))}

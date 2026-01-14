@@ -5,7 +5,7 @@ import { TasksProvider } from "./contexts/TasksProvider";
 
 const TaskPage = () => {
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200">
+    <div>
       <TasksProvider>
         <TaskForm />
         <TaskList />

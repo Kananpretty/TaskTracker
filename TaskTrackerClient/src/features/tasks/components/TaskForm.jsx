@@ -30,7 +30,7 @@ const TaskForm = () => {
     return (
       <button
         onClick={() => setExpanded(true)}
-        className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-gray-500 hover:bg-gray-50 transition"
+        className="bg-white w-full flex items-center gap-2 px-3 py-2 rounded-lg text-gray-500 hover:bg-gray-50 transition border-2 border-gray-200 rounded-b-none"
       >
         <Plus className="w-4 h-4" />
         <span>Add a task…</span>
@@ -48,7 +48,7 @@ const TaskForm = () => {
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full text-sm text-gray-800 border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
         <textarea
@@ -56,7 +56,7 @@ const TaskForm = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           rows={2}
-          className="w-full border rounded-md px-3 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full text-sm text-gray-700 border rounded-md px-3 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
 
