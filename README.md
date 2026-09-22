@@ -5,8 +5,7 @@ A full-stack task management application built with **React, Node.js, Express, a
 The project demonstrates a complete client-server architecture, including REST API communication, CRUD operations, database persistence, and separate deployment of the frontend and backend.
 
 ## 🚀 Live Demo
-
-**[Live Demo](https://task-tracker-xi-dun.vercel.app/)**
+⚠️ Demo temporarily unavailable: The MongoDB Atlas cluster is currently paused due to inactivity, and cluster resumption is temporarily unavailable in the Atlas region. The live demo will be updated once the cluster can be resumed.
 
 ## 📂 Repository Structure
 
